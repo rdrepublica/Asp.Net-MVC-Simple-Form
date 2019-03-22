@@ -1,0 +1,92 @@
+﻿@model WebApplication2.Models.Form
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+    @using (Html.BeginForm("DatosPersonales", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken();
+
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <form id="Form">
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Name, new { @class = "col-md-1 control-label" })
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @name = "Name", @placeholder = "Fullname" })
+                                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Last, new { @class = "col-md-1  control-label" })
+                                    @Html.TextBoxFor(m => m.Last, new { @class = "form-control", @name = "Career", @placeholder = "Lastname" })
+                                    @Html.ValidationMessageFor(m => m.Last, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Cedula, new { @class = "col-md-1  control-label" })
+                                    @Html.TextBoxFor(m => m.Cedula, new { @class = "form-control", @name = "Cedula", @placeholder = "Cedula" })
+                                    @Html.ValidationMessageFor(m => m.Cedula, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Age, new { @class = "col-md-1  control-label" })
+                                    @Html.TextBoxFor(m => m.Age, new { @class = "form-control", @name = "Age", @placeholder = "Age" })
+                                    @Html.ValidationMessageFor(m => m.Age, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Tel, new { @class = "col-md-1  control-label" })
+                                    @Html.TextBoxFor(m => m.Tel, new { @class = "form-control", @name = "Tel", @placeholder = "Telf" })
+                                    @Html.ValidationMessageFor(m => m.Tel, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Email, new { @class = "col-md-1  control-label" })
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @name = "Email", @placeholder = "Email" })
+                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.CivilStatus, new { @class = "col-md-1  control-label" })
+                                    Casado
+                                    @Html.RadioButtonFor(m => m.CivilStatus, "Casado", new { @name = "buton", Value = "Casado" })
+                                    Soltero
+                                    @Html.RadioButtonFor(m => m.CivilStatus, "Soltero", new { @name = "buton", Value = "Soltero" })
+                                    @Html.ValidationMessageFor(m => m.CivilStatus, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Gender, new { @class = "col-md-1  control-label" })
+                                    @Html.DropDownList("Gender", new List<SelectListItem>
+                                    {
+                                    new SelectListItem{Text="Male", Value="Male", Selected=true},
+                                    new SelectListItem{Text="Female", Value="Female"}
+                                    }, "Selected Gender", new { @class="form-control", @name = "Gender" })
+                                    @Html.ValidationMessageFor(m => m.Gender, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.Hobbys, new { @class = "col-md-1 control-label" })
+                                    Comer @Html.CheckBoxFor(m => m.Hobbys)
+                                    Dormir @Html.CheckBoxFor(m => m.Hobbys)
+                                    Sport @Html.CheckBoxFor(m => m.Hobbys)
+                                    Tv Series @Html.CheckBoxFor(m => m.Hobbys)
+                                    @Html.ValidationMessageFor(m => m.Hobbys, "", new { @class = "text-danger" })
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col md-8">
+                    <div id="Tasks"></div>
+                </div>
+            </div>
+        </div>
+
+
+    }
+
+    <!--MAIN CONTENT-->
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
